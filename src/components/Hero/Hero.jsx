@@ -4,7 +4,7 @@ const Hero = () => {
       <div className="hero bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse p-0">
           <img
-            src="public/Assets/images/user.png"
+            src="Assets/images/user.png"
             className="w-3/6 rounded-lg"
           />
           <div className="p-16">
