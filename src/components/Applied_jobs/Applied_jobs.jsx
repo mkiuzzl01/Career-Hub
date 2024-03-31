@@ -17,6 +17,7 @@ const Applied_jobs = () => {
     }
   }, [jobs]);
 
+  
   const handleJobs = short =>{
     if(short === 'All'){
         setDisplayJobs(AppliedJob);
