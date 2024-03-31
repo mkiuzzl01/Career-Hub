@@ -11,19 +11,19 @@ const Applied_jobs = () => {
   useEffect(() => {
     const jobApplied = getJobApplication();
     if (jobApplied.length > 0) {
-      const Applied = jobs.filter((job) => jobApplied.includes(job.id));
+      const Applied = jobs.filter(job => jobApplied.includes(job.id));
       setAppliedJob(Applied);
       setDisplayJobs(Applied);
     }
   }, [jobs]);
 
-  const handleJobs = filter =>{
-    if(filter === 'All'){
+  const handleJobs = short =>{
+    if(short === 'All'){
         setDisplayJobs(AppliedJob);
-    }else if(filter ==='remote'){
+    }else if(short ==='remote'){
         const remoteJobs = AppliedJob.filter(job=> job.remote_or_onsite === 'Remote');
         setDisplayJobs(remoteJobs);
-    }else if (filter === 'onsite'){
+    }else if (short === 'onsite'){
         const onsite = AppliedJob.filter(job=> job.remote_or_onsite ==='Onsite');
         setDisplayJobs(onsite);
     }

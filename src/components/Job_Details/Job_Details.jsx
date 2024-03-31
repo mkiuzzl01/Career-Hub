@@ -1,13 +1,12 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { SaveJobApplication } from "../../Utility/LocalStorage";
+import { SaveJobApplication, getJobApplication } from "../../Utility/LocalStorage";
 
 const Job_Details = () => {
   const jobs = useLoaderData();
-  const { id } = useParams();
-  const ID = parseInt(id);
-
+  const { Job_ID } = useParams();
+  const ID = parseInt(Job_ID);
   const info = jobs.find((job) => job.id === ID);
   const {
     job_description,
@@ -18,15 +17,21 @@ const Job_Details = () => {
     salary,
     job_title,
   } = info;
-  const handleAppliedJob = ()=>{
-      toast.success("Application Submitted Successfully!", {
-        position: "top-center"
-      });
-      
+  const handleAppliedJob =(match_id)=>{
+    const AppliedJob = getJobApplication();
+    if (!AppliedJob.includes(match_id)){
       SaveJobApplication(ID);
+      toast.success("Application Submitted Successfully!", {
+        position: "top-left"
+      });
+    }else{
+      toast.warn("Application Submitted Successfully!", {
+        position: "top-right"
+      });
+    }      
   }
   return (
-    <div className="h-screen">
+    <div className="p-8">
       <h1 className="text-4xl text-center my-4">Job Details</h1>
       <div className="grid grid-cols-3">
         <div className="space-y-4 col-span-2">
@@ -62,7 +67,7 @@ const Job_Details = () => {
           </div>
          </div>
           <div>
-            <button onClick={handleAppliedJob} className="btn w-full">Apply Now</button>
+            <button onClick={()=>handleAppliedJob(ID)} className="btn w-full">Apply Now</button>
             <ToastContainer />
           </div>
         </div>
