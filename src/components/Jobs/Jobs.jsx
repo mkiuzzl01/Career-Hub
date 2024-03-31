@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Jobs = ({ job }) => {
   const {id,company_name, job_title, logo,remote_or_onsite,location,job_type,salary} = job;
   return (
-    <div className="card card-compact p-6 bg-base-100 shadow-lg">
+    <div className="card card-compact p-6 bg-base-100 border-2">
       <figure className="flex flex-grow">
         <img
           src={logo}
@@ -25,7 +25,7 @@ const Jobs = ({ job }) => {
         </div>
         <div className="card-actions">
           <Link to={`/Details/${id}`}>
-          <button className="btn btn-info">View Details</button>
+          <button className="btn bg-sky-300">View Details</button>
           </Link>
         </div>
       </div>
